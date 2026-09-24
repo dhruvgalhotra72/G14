@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
+import TrendingProducts from '../components/TrendingProducts';
 
 const Home = () => {
 
@@ -8,22 +9,29 @@ const Home = () => {
   console.log(productsArr);
 
   async function getData() {
-    let res = await fetch('https://dummyjson.com/products');
+    let res = await fetch('https://dummyjson.com/products?skip=0&limit=100');
     let data = await res.json();
     console.log(data); //{}
     console.log(data.products) //[{}, {}, {}...30]
     setProductsArr(data.products)
   }
 
+  let laptops = productsArr.filter((val) => val.category === "laptops")
+  let smartphones = productsArr.filter((val) => val.category === "smartphones")
+
+  console.log(laptops)
+  console.log(smartphones)
+
   useEffect(() => {
     getData();
   }, [])
 
-
-
   return (
-    <div className='bg-amber-950 text-white'>
+    <div className='bg-cyan-950 text-white'>
       <h1 className='bg-amber-200 text-black text-center h-[60px] p-4'>This is Home Page</h1>
+
+      <TrendingProducts data={laptops} />
+      <TrendingProducts data={smartphones} />
 
       <div className='grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-3'>
         {productsArr.map((val, i) => {
