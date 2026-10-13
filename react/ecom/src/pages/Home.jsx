@@ -27,8 +27,8 @@ const Home = () => {
   }, [])
 
   return (
-    <div className='bg-cyan-950 text-white'>
-      <h1 className='bg-amber-200 text-black text-center h-[60px] p-4'>This is Home Page</h1>
+    <div className='bg-black text-white'>
+      <h1 className='bg-amber-50 text-black text-center h-[60px] p-4'>This is Home Page</h1>
 
       <TrendingProducts data={laptops} />
       <TrendingProducts data={smartphones} />
